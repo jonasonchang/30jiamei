@@ -18,17 +18,17 @@
 		<jsp:include page="header.jsp" />
 	</div>
 	<div id="content">
-	  <table width="963" height="65" border="1">
+	  <table width="963" height="65" border="0">
           <%
 			for (Product p : list) {
 		%>    
         <tr>
-	      <td width="312" ><div class="textcolor">照片1</div></td>
+	      <td width="312" ><div class="textcolor"><img src="images/M16873947_big.jpg" width="270" height="270" alt="產品名"></div></td>
 	      <td width="62" class="textcolor" ><%=p.getProductName()%></td>
 	      <td width="567" class="textcolor"><%=p.getDescription()%></td>
         </tr>
 	    <tr>
-	      <td><div class="textcolor">照片2</div></td>
+	      <td><div class="textcolor"></div></td>
 	      <td class="textcolor">ProductID:<%=p.getProductID()%></td>
 	      <td> <p class="textcolor">容量 :<%=p.getCapacity()%> 單價:<%=p.getUnitPrice()%> 單位:<%=p.getProductUnit()%> </p></td>
         </tr>
