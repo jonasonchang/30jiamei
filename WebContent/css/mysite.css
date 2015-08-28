@@ -1,7 +1,7 @@
 	#wrapper {
 	width: 960px;
 	height: 700px;
-	background-color: #FFFFFF;
+	background-color: #CCFFFF;
 	margin-left: auto;
 	margin-right: auto;
 	}	
@@ -15,16 +15,18 @@
 	#content {
 	width: 960px;
 	height: auto;
-	background-color: #000000;			
+	background-color: #333333;
 	}
 	td.textcolor 
 	{
 	color: rgb(255,255,255);
+	font-size: 18px;
     }
 	
 	p.textcolor 
 	{
 	color: rgb(255,255,255);
+	font-size: 18px;
     }
 	
 	div.textcolor 

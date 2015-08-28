@@ -14,23 +14,22 @@
         ProductDAO pd = new ProductDAOimpl();
 	ArrayList<Product> list = pd.showAll(); %>
 <div id="wrapper">
-	<div id="header">
-		<jsp:include page="header.jsp" />
-	</div>
 	<div id="content">
 	  <table width="963" height="65" border="0">
           <%
 			for (Product p : list) {
 		%>    
         <tr>
-	      <td width="312" ><div class="textcolor"><img src="images/M16873947_big.jpg" width="270" height="270" alt="產品名"></div></td>
-	      <td width="62" class="textcolor" ><%=p.getProductName()%></td>
-	      <td width="567" class="textcolor"><%=p.getDescription()%></td>
+	      <td width="312" ><div class="textcolor"><img src="images/M16873947_big.jpg" width="314" height="270" alt="產品名"></div></td>
+	      <td width="62" align="center" valign="middle" class="textcolor" ><%=p.getProductName()%></td>
+	      <td width="567" align="left" valign="middle" class="textcolor"><p><%=p.getDescription()%></p>
+          <p>&nbsp;</p></td>
         </tr>
 	    <tr>
-	      <td><div class="textcolor"></div></td>
-	      <td class="textcolor">ProductID:<%=p.getProductID()%></td>
-	      <td> <p class="textcolor">容量 :<%=p.getCapacity()%> 單價:<%=p.getUnitPrice()%> 單位:<%=p.getProductUnit()%> </p></td>
+	      <td align="right" class="textcolor">&nbsp;</td>
+	      <td align="center" class="textcolor">&nbsp;</td>
+	      <td> <p class="textcolor">產品編號:<%=p.getProductID()%></p>
+          <p class="textcolor">容量:<%=p.getCapacity()%>克 單價:<%=p.getUnitPrice()%>元 單位:<%=p.getProductUnit()%></p></td>
         </tr>
         <%
 			}
