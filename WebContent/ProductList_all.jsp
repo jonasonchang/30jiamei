@@ -19,21 +19,22 @@
 <body>
 
 <div id="wrapper">
-  <div id="store-cart-content" align="right">
-  <a>href="#" </a> <img src="images/cart_white.png" alt="cart" class="alert-success">
+  <div id="store-cart-content" align="right" class="store-cart">
+  <a href="#" </a> <img src="images/cart_white.png" alt="cart">
   <b>0</b> items, <b >NT$0.00</b> 
   </div>
   <div id="search-bar" >
   <form class="navbar-form navbar-right">
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Search">
-    <button type="submit" class="btn btn-default">Submit</button>
   </div>
+      <button type="submit" class="btn btn-default">Submit</button>
    </form>
   </div><hr />
   <% for (Product p : list) { %>
 <div class="conten-prodlist"> 
-    <div class="prodclist-photo"><img src="images/M16873947_big.jpg" width="270" height="265" alt="產品照片"></div>
+    <div class="prodclist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
+    
     <div class="productlist-name textcolor"><%=p.getProductName()%></div> 
     <div class="productlist-decs textcolor"><%=p.getDescription()%></div> 
     <div class="cart-btnList"><button type="button" class="btn btn-lg ">加入購物車</button>
