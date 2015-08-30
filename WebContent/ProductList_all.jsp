@@ -5,39 +5,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Product List</title>
-
-<link rel="stylesheet" href="css/mysite.css">
-
+	<!-- jQuery, Angular -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+ 
+    <link rel="stylesheet" href="css/mysite.css">
+	<%
+  	ProductDAO pd = new ProductDAOimpl();
+	ArrayList<Product> list = pd.showAll(); 
+    %>
 </head>
 <body>
-    <%
-        ProductDAO pd = new ProductDAOimpl();
-	ArrayList<Product> list = pd.showAll(); %>
+
 <div id="wrapper">
-	<div id="content">
-	  <table width="963" height="65" border="0">
-          <%
-			for (Product p : list) {
-		%>    
-        <tr>
-	      <td width="312" ><div class="textcolor"><img src="images/M16873947_big.jpg" width="314" height="270" alt="產品名"></div></td>
-	      <td width="62" align="center" valign="middle" class="textcolor" ><%=p.getProductName()%></td>
-	      <td width="567" align="left" valign="middle" class="textcolor"><p><%=p.getDescription()%></p>
-          <p>&nbsp;</p></td>
-        </tr>
-	    <tr>
-	      <td align="right" class="textcolor">&nbsp;</td>
-	      <td align="center" class="textcolor">&nbsp;</td>
-	      <td> <p class="textcolor">產品編號:<%=p.getProductID()%></p>
-          <p class="textcolor">容量:<%=p.getCapacity()%>克 單價:<%=p.getUnitPrice()%>元 單位:<%=p.getProductUnit()%></p></td>
-        </tr>
-        <%
-			}
-		%>
-        
-      </table>
-	
-	</div>
+  <div id="store-cart-content" align="right">
+  <a>href="#" </a> <img src="images/cart_white.png" alt="cart" class="alert-success">
+  <b>0</b> items, <b >NT$0.00</b> 
+  </div>
+  <div id="search-bar" >
+  <form class="navbar-form navbar-right">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+    <button type="submit" class="btn btn-default">Submit</button>
+  </div>
+   </form>
+  </div><hr />
+  <% for (Product p : list) { %>
+<div class="conten-prodlist"> 
+    <div class="prodclist-photo"><img src="images/M16873947_big.jpg" width="270" height="265" alt="產品照片"></div>
+    <div class="productlist-name textcolor"><%=p.getProductName()%></div> 
+    <div class="productlist-decs textcolor"><%=p.getDescription()%></div> 
+    <div class="cart-btnList"><button type="button" class="btn btn-lg ">加入購物車</button>
+    						<a href="#" class="btn btn-primary btn-lg " role="button">詳細資料</a></div> 
+    <div class="productlist-id"><%=p.getProductID()%></div> 
+</div> 
+ 	<%	} %>
+  <P> </P>
+  <P> </P>
+  
+  </div>
 </div>
 </body>
 </html>
