@@ -52,12 +52,12 @@
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 
-            <hr />
+           
             <div id="content"><img src="images/1_1.jpg" class="img-responsive" alt="Responsive image"> </div>
-            <div id="content"><img src="images/1_2.jpg" class="img-responsive" alt="Responsive image"> </div>
-            <div id="content"><img src="images/1_3.jpg" class="img-responsive" alt="Responsive image"> </div>
-            <div id="content"><img src="images/1_4.jpg" class="img-responsive" alt="Responsive image"> </div>
-            <div id="content"><img src="images/1_5.jpg" class="img-responsive" alt="Responsive image"> </div>
+            <img src="images/1_2.jpg" class="img-responsive" alt="Responsive image">
+            <img src="images/1_3.jpg" class="img-responsive" alt="Responsive image">
+            <img src="images/1_4.jpg" class="img-responsive" alt="Responsive image">
+            <img src="images/1_5.jpg" class="img-responsive" alt="Responsive image"> </div>
             <P> </P>
             <P> </P>
 
