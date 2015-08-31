@@ -33,7 +33,7 @@
             </div><hr />
             <% for (Product p : list) {%>
             <div class="conten-prodlist"> 
-                <div class="prodclist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
+                <div class="productlist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
 
                 <div class="productlist-name textcolor"><%=p.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=p.getDescription()%></div> 
