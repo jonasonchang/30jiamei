@@ -38,8 +38,8 @@
                 <div class="productlist-name textcolor"><%=p.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=p.getDescription()%></div> 
                 <div class="cart-btnList"><button type="button" class="btn btn-lg btn-primary">加入購物車</button>
-                    <a href="#" class="btn btn-primary btn-lg " role="button">詳細資料</a></div> 
-                <div class="productlist-unitPrice textcolor"><%=Math.round(p.getUnitPrice())%>元</div>                 
+                    <a href="ProductDetial.jsp?id=<%=p.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a></div> 
+                    <div class="productlist-unitPrice textcolor"><%=Math.round(p.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=p.getProductID()%></div> 
             </div> 
             <%	}%>

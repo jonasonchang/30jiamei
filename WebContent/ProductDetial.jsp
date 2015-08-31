@@ -16,7 +16,7 @@
     <%
 
         String s = request.getParameter("id");
-        s="1";
+        //    s="1";
         Product prod=null;
         if (s != null) {
             try {
@@ -53,7 +53,11 @@
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 
             <hr />
-            <div id="prodcut-photo"> </div>
+            <div id="content"><img src="images/1_1.jpg" class="img-responsive" alt="Responsive image"> </div>
+            <div id="content"><img src="images/1_2.jpg" class="img-responsive" alt="Responsive image"> </div>
+            <div id="content"><img src="images/1_3.jpg" class="img-responsive" alt="Responsive image"> </div>
+            <div id="content"><img src="images/1_4.jpg" class="img-responsive" alt="Responsive image"> </div>
+            <div id="content"><img src="images/1_5.jpg" class="img-responsive" alt="Responsive image"> </div>
             <P> </P>
             <P> </P>
 
