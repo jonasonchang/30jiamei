@@ -69,7 +69,16 @@
             position:absolute;
             width:300px;height:50px; 
             left:300px;top:260px;
-            background: #000}	
+            background: #000}
+        
+        div.productlist-unitPrice{ 
+            position:absolute;
+            width:100px;height:50px; 
+            left:600px;bottom:80px;
+            background: #000;
+            font-size:28px;
+            font-family:\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei,MingLiU,sans-serif;
+            }	
 	
 	hr { width:100%; height:1px; background: #000 }
 	
