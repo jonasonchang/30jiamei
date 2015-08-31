@@ -10,7 +10,7 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="css/mysite.css">
+        <link rel="stylesheet" href="css/productList.css">
         <%
             ProductDAO pd = new ProductDAOimpl();
             ArrayList<Product> list = pd.showAll();
