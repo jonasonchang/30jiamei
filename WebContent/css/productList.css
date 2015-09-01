@@ -99,3 +99,12 @@
 	{
 	color:#fff;
     }
+    div.errorpage{
+        width: 960px;
+		height: 100%;
+		background-color:#000;
+	/*background:url(/images/background.jpg) repeat-y 0 0 scroll;*/
+        /*background-image: url(../images/404-Error-Page.jpg);*/
+		margin-left: auto;
+		margin-right: auto;
+       }

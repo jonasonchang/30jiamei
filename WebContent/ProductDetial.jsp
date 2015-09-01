@@ -13,36 +13,24 @@
         <link rel="stylesheet" href="css/productList.css">
 
     </head>
-    <%
-
+    <body>
+<%
         String s = request.getParameter("id");
-        //    s="1";
-        Product prod=null;
+        //s="9";
+        String redirectURL = "ErrorPage.html";
+        Product prod = null;
         if (s != null) {
             try {
                 int product_id = Integer.valueOf(s);
-                ProductDAO pd = new ProductDAOimpl();
-                prod = pd.searchbyID(product_id);
-
-                //out.println("Name:" + prod.getProductName());
-            } catch (Exception e) {
-                out.println("No Data!");
-            }
-
-        } else {
-            out.println("No Data!");
-        }
-    %>
-
-<body>
-
+                ProductDAO pdDAO = new ProductDAOimpl();
+                prod = pdDAO.searchbyID(product_id);  %>
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
                 <b>0</b> items, <b >NT$0.00</b> 
             </div>
             <hr />
-            
+
             <div class="conten-prodlist"> 
                 <div class="productlist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
 
@@ -52,16 +40,21 @@
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 
-           
-            <div id="content"><img src="images/1_1.jpg" class="img-responsive" alt="Responsive image"> </div>
-            <img src="images/1_2.jpg" class="img-responsive" alt="Responsive image">
-            <img src="images/1_3.jpg" class="img-responsive" alt="Responsive image">
-            <img src="images/1_4.jpg" class="img-responsive" alt="Responsive image">
-            <img src="images/1_5.jpg" class="img-responsive" alt="Responsive image"> </div>
-            <P> </P>
-            <P> </P>
 
-        </div>
-    
-</body>
+            <div id="content"><img src="images/1_1.jpg" alt="Responsive image"> 
+                <img src="images/1_2.jpg"  alt="Responsive image">
+                <img src="images/1_3.jpg"  alt="Responsive image">
+                <img src="images/1_4.jpg"  alt="Responsive image">
+                <img src="images/1_5.jpg"  alt="Responsive image"> 
+            </div>
+        </div>               
+  <%          } catch (Exception e) {
+                response.sendRedirect(redirectURL);
+            }
+        } else {
+                response.sendRedirect(redirectURL);
+        }
+    %>
+
+    </body>
 </html>
