@@ -32,8 +32,7 @@
             <hr />
 
             <div class="conten-prodlist"> 
-                <div class="productlist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
-
+                <div class="productlist-photo"><img src="images/B_smallpics/s_<%=prod.getProductID()%>.jpg" class="img-responsive" alt="Responsive image"></div>
                 <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
                 <div class="cart-btnList"><button type="button" class="btn btn-lg btn-primary">加入購物車</button></div> 
