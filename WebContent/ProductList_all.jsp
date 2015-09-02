@@ -60,6 +60,7 @@
     <body>
 
         <div id="wrapper">
+            
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
                 <span id="count">0</span> items.
@@ -71,7 +72,8 @@
                     </div>
                     <button type="submit" class="btn btn-default" >Submit</button>                    
                 </form>
-            </div><hr />
+            </div>
+            <hr />
             <% for (Product prod : list) {%>
             <div class="conten-prodlist"> 
                 <div class="productlist-photo"><img src="images/B_smallpics/s_<%=prod.getProductID()%>.jpg" class="img-responsive" alt="Responsive image"></div>
@@ -89,6 +91,6 @@
             <P> </P>
 
         </div>
-    </div>
+    
 </body>
 </html>
