@@ -16,19 +16,60 @@
             ArrayList<Product> list = pd.showAll();
         %>
     </head>
+    <script language="javascript">
+
+        var counter = 1;
+        var prod_array = new Array();
+        var prod_reduce_dup_array = new Array();
+        function addqty(prod_id)
+        {
+            qty = counter++;
+            prod_array.push(prod_id);
+            prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
+            {
+                return self.indexOf(item) === pos;
+            });
+            /* for (var x in prod_reduce_dup_array) {
+             out.print(prod_reduce_dup_array[x]);
+             }*/
+            document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
+        }
+        function collect_data()
+        {
+            var flag = true;
+            var message = '';
+
+            // ---------- Check ----------
+            var t1 = document.getElementById('search_content');
+            //alert(t1.value);
+            if (t1.value === '')
+            {
+                message = message + '不能沒有可搜尋之值\n';
+                flag = false;
+            }
+            
+            if (!flag)
+            {
+                alert(message);
+            }
+            return flag;
+        }
+    </script>
+
+
     <body>
 
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
-                <b>0</b> items, <b >NT$0.00</b> 
+                <span id="count">0</span> items.
             </div>
             <div id="search-bar" >
-                <form class="navbar-form navbar-right">
+                <form class="navbar-form navbar-right" action="SearchProd.jsp" method="post" onSubmit="return collect_data()">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input id="search_content" name="search_content" type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default" >Submit</button>                    
                 </form>
             </div><hr />
             <% for (Product p : list) {%>
@@ -37,9 +78,10 @@
 
                 <div class="productlist-name textcolor"><%=p.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=p.getDescription()%></div> 
-                <div class="cart-btnList"><button type="button" class="btn btn-lg btn-primary">加入購物車</button>
-                    <a href="ProductDetial.jsp?id=<%=p.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a></div> 
-                    <div class="productlist-unitPrice textcolor"><%=Math.round(p.getUnitPrice())%>元</div>                 
+                <div class="cart-btnList"> <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=p.getProductID()%>)" id="addcart" value="<%=p.getProductID()%>" >加入購物車</button>
+                    <a href="ProductDetial.jsp?id=<%=p.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
+                </div> 
+                <div class="productlist-unitPrice textcolor"><%=Math.round(p.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=p.getProductID()%></div> 
             </div> 
             <%	}%>

@@ -10,7 +10,7 @@
 <body>
 
 	<%
-		String Page = request.getParameter("p");
+                String Page = request.getParameter("p");
 		int pg;
 		if (Page == null) {
 			pg = 1;
