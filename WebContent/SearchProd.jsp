@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Search Product</title>
         <!-- jQuery, Angular -->
@@ -15,8 +15,30 @@
         <link rel="stylesheet" href="css/productList.css">
 
     </head>
+    <script language="javascript">
+
+        var counter = 1;
+        var prod_array = new Array();
+        var prod_reduce_dup_array = new Array();
+        function addqty(prod_id)
+        {
+            qty = counter++;
+            prod_array.push(prod_id);
+            prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
+            {
+                return self.indexOf(item) === pos;
+            });
+            /* for (var x in prod_reduce_dup_array) {
+             out.print(prod_reduce_dup_array[x]);
+             }*/
+            document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
+        }
+
+    </script>
+
+
     <body>
-        
+
         <%
             request.setCharacterEncoding("UTF-8");
             String s = request.getParameter("search_content");
@@ -40,16 +62,17 @@
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
-                <b>0</b> items.
+                <span id="count">0</span> items.
             </div>
             <hr />
 
             <div class="conten-prodlist"> 
-                <div class="productlist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
-
+                <div class="productlist-photo"><img src="images/B_smallpics/s_<%=prod.getProductID()%>.jpg" class="img-responsive" alt="Responsive image"></div>    
                 <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
-                <div class="cart-btnList"><button type="button" class="btn btn-lg btn-primary">加入購物車</button></div> 
+                <div class="cart-btnList">
+                    <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> 
+                </div>
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 

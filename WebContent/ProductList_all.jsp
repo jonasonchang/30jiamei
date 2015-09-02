@@ -72,17 +72,17 @@
                     <button type="submit" class="btn btn-default" >Submit</button>                    
                 </form>
             </div><hr />
-            <% for (Product p : list) {%>
+            <% for (Product prod : list) {%>
             <div class="conten-prodlist"> 
-                <div class="productlist-photo"><img src="images/M16873947_big.jpg" class="img-responsive" alt="Responsive image"></div>
+                <div class="productlist-photo"><img src="images/B_smallpics/s_<%=prod.getProductID()%>.jpg" class="img-responsive" alt="Responsive image"></div>
 
-                <div class="productlist-name textcolor"><%=p.getProductName()%></div> 
-                <div class="productlist-decs textcolor"><%=p.getDescription()%></div> 
-                <div class="cart-btnList"> <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=p.getProductID()%>)" id="addcart" value="<%=p.getProductID()%>" >加入購物車</button>
-                    <a href="ProductDetial.jsp?id=<%=p.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
+                <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
+                <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
+                <div class="cart-btnList"> <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button>
+                    <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
                 </div> 
-                <div class="productlist-unitPrice textcolor"><%=Math.round(p.getUnitPrice())%>元</div>                 
-                <div class="productlist-id textcolor"><%=p.getProductID()%></div> 
+                <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
+                <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 
             <%	}%>
             <P> </P>
