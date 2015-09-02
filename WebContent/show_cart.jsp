@@ -58,45 +58,60 @@
 
     <body>
 
-   <div id="wrapper">
-       <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-8">
-                <table class="table table-bordered textcolor table-hover text-center">
-                    <th class="text-center" >產品編號</th> 
-                        <th class="text-center">產品名稱</th> 
-                        <th class="text-center">數量</th> 
-                        <th class="text-center">價錢</th> 
-                        <th class="text-center">刪除</th> 
-                    </tr>
-                    <tbody>
-                    <tr> 
-                        <td >1</td> 
-                        <td>西瓜</td> 
-                        <td></td> 
-                        <td>100元</td> 
-                        <td>嘉義</td> 
-                    </tr> 
-                    </tbody>
-                    <tr> 
-                        <td>Total</td> 
-                        <td></td> 
-                        <td></td> 
-                        <td>總價</td> 
-                        <td></td> 
-                    </tr> 
-                </table>
-            </div>
-                <div class="col-xs-6 col-sm-4">
-                    <!--Bottom Area-->
-                    <div class="cart-btn1"> <button type="button" class="btn btn-lg btn-primary" onClick="" id="back_to_store" >回產品一覽</button> </div>
-                    <div class="cart-btn2"> <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> </div>
-                    <div>  <a href="# 訂單.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
+        <div id="wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-8">
+                        <table class="table table-bordered textcolor table-hover text-center">
+                            <th class="text-center" >產品編號</th> 
+                            <th class="text-center">產品名稱</th> 
+                            <th class="text-center">數量</th> 
+                            <th class="text-center">價錢</th> 
+                            <th class="text-center">刪除</th> 
+                            </tr>
+                            <tbody>
+                                <tr> 
+                                    <td >1</td> 
+                                    <td>Name </td> 
+                                    <td><div class="input-group input-group-xs">
+                                            <span class="input-group-btn">
+                                               <button class="btn btn-success" id="add1">
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                </button>
+                                            </span>
+                                            <input type="text" class="form-control" id="qty"/>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-danger" id="minus1">
+                                                    <i class="glyphicon glyphicon-minus"></i>
+                                                </button>
+                                            </span>
+                                        </div></td>  
+                                    <td>100元</td> 
+                                    <td>    <button class="btn btn-danger" id="minus1">
+                                           <i class="glyphicon glyphicon-minus"></i>
+                                            </button>
+                                        </td> 
+                                </tr> 
+                            </tbody>
+                            <tr> 
+                                <td>Total</td> 
+                                <td></td> 
+                                <td></td> 
+                                <td>總價</td> 
+                                <td></td>
+                            </tr> 
+                        </table>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <!--Bottom Area-->
+                        <div class="cart-btn1"> <button type="button" class="btn btn-lg btn-primary" onClick="" id="back_to_store" >回產品一覽</button> </div>
+                        <div class="cart-btn2"> <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> </div>
+                        <div>  <a href="# 訂單.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
+                    </div>
                 </div>
             </div>
         </div>
-</div>
-</div>
+    </div>
 
 </body>
 </html>
