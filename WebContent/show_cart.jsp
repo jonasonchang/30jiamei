@@ -62,22 +62,22 @@
        <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-8">
-                <table class="table table-striped"> 
+                <table class="table table-bordered textcolor table-hover text-center">
+                    <th class="text-center" >產品編號</th> 
+                        <th class="text-center">產品名稱</th> 
+                        <th class="text-center">數量</th> 
+                        <th class="text-center">價錢</th> 
+                        <th class="text-center">刪除</th> 
+                    </tr>
+                    <tbody>
                     <tr> 
-                        <th>產品編號</th> 
-                        <th>產品名稱</th> 
-                        <th>數量</th> 
-                        <th>價錢</th> 
-                        <th>刪除</th> 
-                    </tr> 
-                    <tr> 
-                        <td>1</td> 
+                        <td >1</td> 
                         <td>西瓜</td> 
-                        <td>5斤</td> 
+                        <td></td> 
                         <td>100元</td> 
                         <td>嘉義</td> 
                     </tr> 
-                    
+                    </tbody>
                     <tr> 
                         <td>Total</td> 
                         <td></td> 
