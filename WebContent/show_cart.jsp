@@ -70,12 +70,12 @@
                             <th class="text-center">刪除</th> 
                             </tr>
                             <tbody>
-                                <tr> 
+                                <tr id="get_item" > 
                                     <td >1</td> 
                                     <td>Name </td> 
                                     <td><div class="input-group input-group-xs">
                                             <span class="input-group-btn">
-                                               <button class="btn btn-success" id="add1">
+                                                <button class="btn btn-success" id="add1">
                                                     <i class="glyphicon glyphicon-plus"></i>
                                                 </button>
                                             </span>
@@ -88,9 +88,16 @@
                                         </div></td>  
                                     <td>100元</td> 
                                     <td>    <button class="btn btn-danger" id="minus1">
-                                           <i class="glyphicon glyphicon-minus"></i>
-                                            </button>
-                                        </td> 
+                                            <i class="glyphicon glyphicon-minus"></i>
+                                        </button>
+                                    </td> 
+                                </tr>
+                                <tr id="empty_item" > 
+                                    <td ></td>
+                                    <td ></td>
+                                    <td >No items!</td>
+                                    <td ></td>
+                                    <td ></td>
                                 </tr> 
                             </tbody>
                             <tr> 
@@ -104,9 +111,9 @@
                     </div>
                     <div class="col-xs-6 col-sm-4">
                         <!--Bottom Area-->
-                        <div class="cart-btn1"> <button type="button" class="btn btn-lg btn-primary" onClick="" id="back_to_store" >回產品一覽</button> </div>
-                        <div class="cart-btn2"> <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> </div>
-                        <div>  <a href="# 訂單.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
+                        <div class="cart-btn1" > <button type="button" class="btn btn-lg btn-primary" onClick="" id="back_to_store" >回產品一覽</button> </div>
+                        <div class="cart-btn2" > <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> </div>
+                        <div >  <a href="# 訂單.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
                     </div>
                 </div>
             </div>
