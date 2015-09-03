@@ -14,27 +14,29 @@
         <%
             ProductDAO pd = new ProductDAOimpl();
             ArrayList<Product> list = pd.showAll();
-        %>
+            
+            //get session date update 'qty' show on webpage
+            TreeSet current_data = new TreeSet (); 
+            String c_id = session.getId();
+            current_data = (TreeSet) session.getAttribute(c_id);
+            int qty=current_data.size();
+            out.print(qty);
+         %>
     </head>
     <script language="javascript">
 
         var counter = 1;
-        var prod_array = new Array();
-        var prod_reduce_dup_array = new Array();
-        function addqty(prod_id)
+        
+        function check_current(q)
         {
-            qty = counter++;
-            prod_array.push(prod_id);
-            prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
-            {
-                return self.indexOf(item) === pos;
-            });
-            /* for (var x in prod_reduce_dup_array) {
-             out.print(prod_reduce_dup_array[x]);
-             }*/
-            document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
+          alert(<%=current_data.size()%>) ;
+          document.getElementById("count").innerHTML =<%=current_data.size()%>;
+            //document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
         }
-        function collect_data()
+        
+        
+        
+        function check_data()
         {
             var flag = true;
             var message = '';
@@ -63,10 +65,10 @@
             
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
-                <span id="count">0</span> items.
+                <span id="count"><%=current_data.size()%></span> items.
             </div>
             <div id="search-bar" >
-                <form class="navbar-form navbar-right" action="SearchProd.jsp" method="post" onSubmit="return collect_data()">
+                <form class="navbar-form navbar-right" action="SearchProd.jsp" method="post" onSubmit="return check_data()">
                     <div class="form-group">
                         <input id="search_content" name="search_content" type="text" class="form-control" placeholder="Search">
                     </div>
@@ -80,8 +82,13 @@
 
                 <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
-                <div class="cart-btnList"> <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button>
+                <div class="cart-btnList"> 
+                    <form name="addcart" action="session_cart.jsp" method="post">
+                    <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" />    
+                    <!-- <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> -->
+                    <input type="submit" name="b1" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
                     <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
+                    </form>
                 </div> 
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
