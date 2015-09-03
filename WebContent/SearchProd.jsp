@@ -55,7 +55,6 @@
                     //out.print(list.toString());
                     if (list == null) {
                         System.out.println("Size of list: " + list.size());
-
                     }
                     if (list != null) {
                         for (Product prod : list) {%>

@@ -6,11 +6,12 @@
         <title>Init cart session page only</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <!--<h1>Hello World!</h1> -->
         <% // Process new session on Server Site
             TreeSet collect_data = new TreeSet (); 
             String s_id = session.getId();
             session.setAttribute(s_id, collect_data);
+            out.print("current_id"+s_id);
         %>
         
     </body>

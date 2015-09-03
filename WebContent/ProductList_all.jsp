@@ -19,17 +19,17 @@
             TreeSet current_data = new TreeSet (); 
             String c_id = session.getId();
             current_data = (TreeSet) session.getAttribute(c_id);
-            int qty=current_data.size();
-            out.print(qty);
+            //int qty=current_data.size();
+            //out.print(qty);
          %>
     </head>
     <script language="javascript">
 
         var counter = 1;
         
-        function check_current(q)
+        function check_current()
         {
-          alert(<%=current_data.size()%>) ;
+          
           document.getElementById("count").innerHTML =<%=current_data.size()%>;
             //document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
         }

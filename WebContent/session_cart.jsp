@@ -15,7 +15,7 @@
         <h1>catch the cart data</h1>
 
         <%
-            // try to get session "d1" if exist then add p_id to arrayList
+            // try to get same session "gId" if exist then add p_id to TreeSet
             Integer p = Integer.valueOf(request.getParameter("p_id"));
             String gId = session.getId();
             TreeSet s1 = (TreeSet) session.getAttribute(gId);

@@ -13,6 +13,16 @@
         <%
             ProductDAO pd = new ProductDAOimpl();
             ArrayList<Product> list = pd.showAll();
+            Product selected_pd;
+
+            //get session date 
+            TreeSet current_data = new TreeSet();
+            String c_id = session.getId();
+            current_data = (TreeSet) session.getAttribute(c_id);
+            //int qty=current_data.size();
+            //out.print(qty);
+            Iterator iterator = current_data.iterator();    
+
         %>
     </head>
     <script language="javascript">
@@ -71,8 +81,16 @@
                             </tr>
                             <tbody>
                                 <tr id="get_item" > 
-                                    <td >1</td> 
-                                    <td>Name </td> 
+                                    <%   
+                                        while (iterator.hasNext()) 
+                                        {
+                                            Integer current_id = (Integer) iterator.next();
+                                            selected_pd = pd.searchbyID(current_id);
+                                         //out.print(iterator.next() + " "); 
+                                    %>                                  
+
+                                    <td ><%=current_id%></td> 
+                                    <td><%=selected_pd.getProductName()%></td> 
                                     <td><div class="input-group input-group-xs">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-success" id="add1">
@@ -86,12 +104,13 @@
                                                 </button>
                                             </span>
                                         </div></td>  
-                                    <td>100元</td> 
+                                    <td><%=selected_pd.getUnitPrice()%></td> 
                                     <td>    <button class="btn btn-danger" id="minus1">
                                             <i class="glyphicon glyphicon-minus"></i>
                                         </button>
                                     </td> 
                                 </tr>
+                            <% }%>                
                                 <tr id="empty_item" > 
                                     <td ></td>
                                     <td ></td>
