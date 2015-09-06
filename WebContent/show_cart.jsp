@@ -49,7 +49,7 @@
                             <th class="text-center">產品名稱</th> 
                             <th class="text-center col-sm-3">數量</th> 
                             <th class="text-center">單價</th> 
-                            <th class="text-center">刪除</th> 
+                            <th class="text-center"></th> 
                             </tr>
                             <tbody>
                                 <tr id="get_item" > 
@@ -97,7 +97,7 @@
                                                 </form>
                                             </span>
                                         </div></td>  
-                                    <td><%=(int) Math.ceil(selected_pd.getUnitPrice())%></td> 
+                                    <td><%=(int) Math.ceil(selected_pd.getUnitPrice())%>元</td> 
                                     <td>    
                                         <!--<button class="btn btn-danger" id="dele-item"> <i class="glyphicon glyphicon-minus"></i>
                                         </button> -->

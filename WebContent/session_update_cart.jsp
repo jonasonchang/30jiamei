@@ -52,6 +52,11 @@
                 session.setAttribute("cart_map", s1);
                 //session.setAttribute("cart_id", s2);
                 response.sendRedirect("show_cart.jsp");
+            }else if (check_add.equals("addcart_detial")) {
+                out.println(check_add);
+                s1.put(p, default_qty);
+                session.setAttribute("cart_map", s1);
+                response.sendRedirect("ProductDetial.jsp?id="+p);
             }
        // response.sendRedirect(request.getParameter("from"));
 

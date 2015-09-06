@@ -17,7 +17,10 @@
 <%
         String s = request.getParameter("id");
         //s="9";
+        int qty=0;
         String redirectURL = "ErrorPage.html";
+        TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");    
+        qty = s1.size(); 
         Product prod = null;
         if (s != null) {
             try {
@@ -26,8 +29,8 @@
                 prod = pdDAO.searchbyID(product_id);  %>
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
-                <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
-                <b>0</b> items, <b >NT$0.00</b> 
+                <a href="show_cart.jsp" > <img src="images/cart_white.png" alt="cart"></a>
+                <b><%=qty%></b> items.
             </div>
             <hr />
 
@@ -35,7 +38,14 @@
                 <div class="productlist-photo"><img src="images/B_smallpics/s_<%=prod.getProductID()%>.jpg" class="img-responsive" alt="Responsive image"></div>
                 <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
-                <div class="cart-btnList"><button type="button" class="btn btn-lg btn-primary">加入購物車</button></div> 
+                <div class="cart-btnList">
+                    <form name="addcart" action="session_update_cart.jsp" method="post">
+                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" /> 
+                        <input type="hidden" name="check_addcart" value="addcart_detial" />
+                        <input type="submit" name="addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
+                    </form> 
+                    <!-- <button type="button" class="btn btn-lg btn-primary">加入購物車</button>-->
+                </div> 
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 
