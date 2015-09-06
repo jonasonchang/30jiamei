@@ -45,7 +45,7 @@
             //out.print(s);
             //s = "脆梅";
             //out.print(s);
-            //s = "紫蘇*";
+            //s = "紫蘇梅";
             String redirectURL = "ErrorPage.html";
             ArrayList<Product> list = null;
             if (s != null) {
@@ -70,7 +70,12 @@
                 <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
                 <div class="cart-btnList">
-                    <button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> 
+                    <form name="addcart" action="session_update_cart.jsp" method="post">
+                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" />    
+                        <input type="submit" name="check_addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
+                        <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
+                    </form> 
+                    <!--<button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> -->
                 </div>
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
