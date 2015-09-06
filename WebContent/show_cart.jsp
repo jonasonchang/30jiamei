@@ -12,17 +12,27 @@
         <link rel="stylesheet" href="css/cart.css">
         <%
             ProductDAO pd = new ProductDAOimpl();
-            ArrayList<Product> list = pd.showAll();
             Product selected_pd;
 
-            //get session date 
-            TreeSet current_data = new TreeSet();
-            String c_id = session.getId();
-            current_data = (TreeSet) session.getAttribute(c_id);
-            //int qty=current_data.size();
+            //get session data
+            TreeSet cart_prod_id_data=null;
+            int qty;
+            String cart_id = "";
+            //session = request.getSession(false);//判斷curresnt session 的存在與否
+            //out.print(session);
+            
+            //if (session != null) {
+                cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
+                qty = cart_prod_id_data.size();
+            //}
+            
+            
+            //int qty=cart_prod_id_data.size();
             //out.print(qty);
-            Iterator iterator = current_data.iterator();    
-
+            // iterator 是用來 display card_id 中的 TreeSet 用
+            Iterator iterator = cart_prod_id_data.iterator();    
+            
+  
         %>
     </head>
     <script language="javascript">
@@ -43,26 +53,7 @@
              }*/
             document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
         }
-        function collect_data()
-        {
-            var flag = true;
-            var message = '';
-
-            // ---------- Check ----------
-            var t1 = document.getElementById('search_content');
-            //alert(t1.value);
-            if (t1.value === '')
-            {
-                message = message + '不能沒有可搜尋之值\n';
-                flag = false;
-            }
-
-            if (!flag)
-            {
-                alert(message);
-            }
-            return flag;
-        }
+        
     </script>
 
 
@@ -72,7 +63,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-8">
-                        <table class="table table-bordered textcolor table-hover text-center">
+                        <table class="table table-bordered textcolor text-center">
                             <th class="text-center" >產品編號</th> 
                             <th class="text-center">產品名稱</th> 
                             <th class="text-center">數量</th> 
@@ -130,8 +121,13 @@
                     </div>
                     <div class="col-xs-6 col-sm-4">
                         <!--Bottom Area-->
-                        <div class="cart-btn1" > <button type="button" class="btn btn-lg btn-primary" onClick="" id="back_to_store" >回產品一覽</button> </div>
-                        <div class="cart-btn2" > <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> </div>
+                        <div class="cart-btn1" >
+                        <a class="btn btn-lg btn-info" href="ProductList_all.jsp">回產品一覽</a>
+                        </div>
+                        <div class="cart-btn2" > 
+                            <!-- <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> -->
+                            <a class="btn btn-lg btn-primary" href="session_empty_cart.jsp">清空購物車</a>
+                        </div>
                         <div >  <a href="# 訂單.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
                     </div>
                 </div>
