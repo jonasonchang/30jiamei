@@ -15,57 +15,27 @@
 
         <link rel="stylesheet" href="css/productList.css">
         <%/* 本程式開始 要注意引用 session 物件到購物車,訪客未登入 也會碰到一樣問題
-             1.設計上 每個需要的session 的頁面,先做檢查,假如不存在就生成一個
-             來源: http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html#getSession%28boolean%29
-             語法 : getSession(boolean create) - Returns the current HttpSession associated with this request or, if there is no current session and create is true, returns a new session.
-             If create is false and the request has no valid HttpSession, this method returns null. 
-             If create is false and the request has valid HttpSession, this method returns a session. 
             
-             HttpSession session = request.getSession(false);
-             if(session!=null){session.setAttribute("name", name);}
-            
-             2.若要清除特定session 要用以下語法 :
-             HttpSession session = request.getSession(false);
-             if(session!=null){
-             session.invalidate(); //清空全部seesion ,屬性可能依舊沒辦法清乾淨 
-             session.removeAttribute("name");}
              */
             // 來本網頁之前 應該先執行 session_init.jsp
-            TreeSet cart_prod_id_data=null;
+            //TreeSet cart_prod_id_data=null;
             int qty=0;
             //String cart_id = "";
-                cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
+            // cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
                 //qty = (int) session.getAttribute("cart_qty");
-                qty = cart_prod_id_data.size();                
-           //out.print(qty);
-
+            //    qty = cart_prod_id_data.size();                
+         
             //get session date update 'qty' show on webpage
-            //TreeSet cart_prod_id_data = new TreeSet (); 
-            //String c_id = session.getId();
-            //cart_prod_id_data = (TreeSet) session.getAttribute(c_id);
-            //int qty=cart_prod_id_data.size();
-            //out.print(qty);
+            
+            TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");    
+            qty = s1.size();    
             ProductDAO pd = new ProductDAOimpl();
             ArrayList<Product> list = pd.showAll();
 %>
     </head>
     <script language="javascript">
 
-     // initialize application defaults
-        
-    /* window.onload = function() {
-        var cart = Session.get("cart");
-        alert(Session.dump());
-        alert(cart.total_qty);
-        
-       var prod_array =cart.prods;
-    document.getElementById("count").firstChild.nodeValue=cart.total_qty;}
-
-
-        //var counter = 1;
-        //var prod_array = new Array();
-        //var prod_reduce_dup_array = new Array(); */
-        
+    
         function addqty(prod_id)// JavaScriot 專用addqty
         {
             //qty = counter++;
@@ -142,9 +112,9 @@
                         
                         <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a> -->
                     
-                    <form name="addcart" action="session_cart.jsp" method="post">
+                    <form name="addcart" action="session_update_cart.jsp" method="post">
                         <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" />    
-                        <input type="submit" name="b1" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
+                        <input type="submit" name="check_addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
                         <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
                     </form> 
                 </div> 

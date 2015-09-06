@@ -16,18 +16,18 @@
            //session.setAttribute(s_id, collect_data);
            //session.removeAttribute("cart_qty");
            
-           TreeSet cart_prod_id_data = new TreeSet();
-             int qty = 0;
+           //TreeSet cart_prod_id_data = new TreeSet();
+            // int qty = 0;
              
-             session.setAttribute("cart_id", cart_prod_id_data);
-             session.setAttribute("cart_qty", qty);
+             //session.setAttribute("cart_id", cart_prod_id_data);
+             //session.setAttribute("cart_qty", qty);
              //out.print(session);
              
             TreeMap s1 = (TreeMap) session.getAttribute("cart_map");
             s1.clear();
             session.setAttribute("cart_map", s1);
 
-             response.sendRedirect("show_cart.jsp");
+            response.sendRedirect("show_cart.jsp");
 %>
            
            

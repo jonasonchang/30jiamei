@@ -15,14 +15,14 @@
             Product selected_pd;
 
             //get session data
-            //TreeSet cart_prod_id_data = null;
+            TreeSet cart_prod_id_data = null;
             int qty;
-            //String cart_id = "";
+            String cart_id = "";
             //session = request.getSession(false);//判斷curresnt session 的存在與否
             //out.print(session);
 
             //if (session != null) {
-            //cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
+            cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
             TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");
             //qty = cart_prod_id_data.size();
             //}
@@ -30,12 +30,31 @@
             //int qty=cart_prod_id_data.size();
             //out.print(qty);
             // iterator 是用來 display card_id 中的 TreeSet 用
-            //Iterator iterator = cart_prod_id_data.iterator();
+            Iterator iterator = cart_prod_id_data.iterator();
             int total = 0;
 
         %>
     </head>
-    
+    <script language="javascript">
+
+        var counter = 1;
+        var prod_array = new Array();
+        var prod_reduce_dup_array = new Array();
+        function addqty(prod_id)
+        {
+            qty = counter++;
+            prod_array.push(prod_id);
+            prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
+            {
+                return self.indexOf(item) === pos;
+            });
+            /* for (var x in prod_reduce_dup_array) {
+             out.print(prod_reduce_dup_array[x]);
+             }*/
+            document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
+        }
+
+    </script>
 
 
     <body>
