@@ -37,7 +37,7 @@
                 cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
                 //qty = (int) session.getAttribute("cart_qty");
                 qty = cart_prod_id_data.size();                
-           out.print(qty);
+           //out.print(qty);
 
             //get session date update 'qty' show on webpage
             //TreeSet cart_prod_id_data = new TreeSet (); 

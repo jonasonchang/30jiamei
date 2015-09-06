@@ -15,24 +15,24 @@
             Product selected_pd;
 
             //get session data
-            TreeSet cart_prod_id_data=null;
+            TreeSet cart_prod_id_data = null;
             int qty;
             String cart_id = "";
             //session = request.getSession(false);//判斷curresnt session 的存在與否
             //out.print(session);
-            
+
             //if (session != null) {
-                cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
-                qty = cart_prod_id_data.size();
+            cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
+            TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");
+            //qty = cart_prod_id_data.size();
             //}
-            
             
             //int qty=cart_prod_id_data.size();
             //out.print(qty);
             // iterator 是用來 display card_id 中的 TreeSet 用
-            Iterator iterator = cart_prod_id_data.iterator();    
-            
-  
+            Iterator iterator = cart_prod_id_data.iterator();
+            int total = 0;
+
         %>
     </head>
     <script language="javascript">
@@ -53,7 +53,7 @@
              }*/
             document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
         }
-        
+
     </script>
 
 
@@ -66,42 +66,62 @@
                         <table class="table table-bordered textcolor text-center">
                             <th class="text-center" >產品編號</th> 
                             <th class="text-center">產品名稱</th> 
-                            <th class="text-center">數量</th> 
+                            <th class="text-center col-sm-3">數量</th> 
                             <th class="text-center">價錢</th> 
                             <th class="text-center">刪除</th> 
                             </tr>
                             <tbody>
                                 <tr id="get_item" > 
-                                    <%   
-                                        while (iterator.hasNext()) 
-                                        {
+                                    <%     while (iterator.hasNext()) {
                                             Integer current_id = (Integer) iterator.next();
                                             selected_pd = pd.searchbyID(current_id);
-                                         //out.print(iterator.next() + " "); 
+                                            qty =(int)s1.get(current_id);
+                                            //out.print(qty);
+                                            total = (int) Math.ceil(selected_pd.getUnitPrice())*qty + total;
+                                            //out.print(iterator.next() + " "); 
                                     %>                                  
 
                                     <td ><%=current_id%></td> 
                                     <td><%=selected_pd.getProductName()%></td> 
-                                    <td><div class="input-group input-group-xs">
+                                    <td><div class="input-group input-group-xs ">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-success" id="add1">
+                                               <!-- <button class="btn btn-success" id="add1">
                                                     <i class="glyphicon glyphicon-plus"></i>
-                                                </button>
+                                                </button> -->
+                                                <form action="session_update_cart.jsp" method="post">
+                                                    <input type="hidden" name="check_addcart" value="add" />
+                                                    <input type="hidden" name="p_id" value="<%=current_id%>" />
+                                                    <button class="btn btn-success" name="add1" value="1"><i class="glyphicon glyphicon-plus"></i></button>
+                                                </form>
+
                                             </span>
-                                            <input type="text" class="form-control" id="qty"/>
+
+                                            <input type="text" class="form-control" id="qty" value="<%=qty%>"/>
+                                            
                                             <span class="input-group-btn">
-                                                <button class="btn btn-danger" id="minus1">
+                                                <!-- <button class="btn btn-danger" id="minus1">
                                                     <i class="glyphicon glyphicon-minus"></i>
-                                                </button>
+                                                </button>-->
+                                                <form action="session_update_cart.jsp" method="post">
+                                                    <input type="hidden" name="check_addcart" value="minus" />
+                                                    <input type="hidden" name="p_id" value="<%=current_id%>" />
+                                                    <button class="btn btn-danger" name="minus1" value="1"><i class="glyphicon glyphicon-minus"></i></button>
+                                                </form>
                                             </span>
                                         </div></td>  
-                                    <td><%=selected_pd.getUnitPrice()%></td> 
-                                    <td>    <button class="btn btn-danger" id="minus1">
-                                            <i class="glyphicon glyphicon-minus"></i>
-                                        </button>
+                                    <td><%=(int) Math.ceil(selected_pd.getUnitPrice())%></td> 
+                                    <td>    
+                                        <!--<button class="btn btn-danger" id="dele-item"> <i class="glyphicon glyphicon-minus"></i>
+                                        </button> -->
+                                        <form name="delect-one-item" action="session_update_cart.jsp" method="post">
+                                            <input type="hidden" name="check_addcart" value="delete_one" />
+                                            <input type="hidden" name="p_id" value="<%=current_id%>" />    
+                                            <input type="submit" name="dele-item" value="刪除" class="btn btn-danger" onclick="" >
+                                        </form> 
                                     </td> 
                                 </tr>
-                            <% }%>                
+                                <% }%> 
+                                <% if(cart_prod_id_data.isEmpty()){%>
                                 <tr id="empty_item" > 
                                     <td ></td>
                                     <td ></td>
@@ -109,12 +129,13 @@
                                     <td ></td>
                                     <td ></td>
                                 </tr> 
+                              <%}%>             
                             </tbody>
                             <tr> 
-                                <td>Total</td> 
-                                <td></td> 
-                                <td></td> 
                                 <td>總價</td> 
+                                <td></td> 
+                                <td></td> 
+                                <td><%=total%>元</td> 
                                 <td></td>
                             </tr> 
                         </table>
@@ -122,7 +143,7 @@
                     <div class="col-xs-6 col-sm-4">
                         <!--Bottom Area-->
                         <div class="cart-btn1" >
-                        <a class="btn btn-lg btn-info" href="ProductList_all.jsp">回產品一覽</a>
+                            <a class="btn btn-lg btn-info" href="ProductList_all.jsp">回產品一覽</a>
                         </div>
                         <div class="cart-btn2" > 
                             <!-- <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> -->
