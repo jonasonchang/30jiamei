@@ -42,15 +42,15 @@
             
             // Integer counter = (Integer)session.getAttribute("counter");
               
-             TreeSet cart_prod_id_data = new TreeSet();
+             //TreeSet cart_prod_id_data = new TreeSet();
              
              TreeMap<Integer, Integer> cart_treeMap = new TreeMap<Integer,Integer>();
              int qty = 0;
              
-             session.setAttribute("cart_id", cart_prod_id_data);
-             session.setAttribute("cart_qty", qty);
+             //session.setAttribute("cart_id", cart_prod_id_data);
+             //session.setAttribute("cart_qty", qty);
              session.setAttribute("cart_map", cart_treeMap);
-             out.print(session);
+             //out.print(session);
              
             
              //response.sendRedirect("show_cart.jsp");
