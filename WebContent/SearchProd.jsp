@@ -46,6 +46,9 @@
             //s = "脆梅";
             //out.print(s);
             //s = "紫蘇梅";
+            int qty=0;
+            TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");    
+            qty = s1.size(); 
             String redirectURL = "ErrorPage.html";
             ArrayList<Product> list = null;
             if (s != null) {
@@ -60,8 +63,8 @@
                         for (Product prod : list) {%>
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
-                <a href="#" > <img src="images/cart_white.png" alt="cart"></a>
-                <span id="count">0</span> items.
+                <a href="show_cart.jsp" > <img src="images/cart_white.png" alt="cart"></a>
+                <span id="count"><%=qty%></span> items.
             </div>
             <hr />
 
