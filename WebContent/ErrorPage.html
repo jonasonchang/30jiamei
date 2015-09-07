@@ -4,8 +4,14 @@
 	<head>
 		<title>WebPage Error</title>
 		<link href="css/style-error-page.css" rel="stylesheet" type="text/css"  media="all" />
+                <link rel="stylesheet" href="css/bootstrap.css">
 	</head>
 	<body>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
 		<!--start-wrap--->
 		<div class="wrap">
 			<!---start-header---->
@@ -19,7 +25,7 @@
 			<div class="content">
 				<img src="images/error-img.png" title="error" />
 				<p><span><label>O</label>hh.....</span>很抱歉,你需求的網頁資料不存在!</p>
-				<a href="ProductList_all.jsp">回上頁</a>
+				<button class="btn btn-lg btn-danger" onclick="goBack()">回上頁</button>
 				<div class="copy-right">
 					<p>&#169 All rights Reserved | Designed by <a href="#">30岬梅鋪中心</a></p>
 				</div>

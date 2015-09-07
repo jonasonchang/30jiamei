@@ -39,7 +39,7 @@
 
 
     <body>
-
+       
         <div id="wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -83,9 +83,12 @@
                                                 </form>
 
                                             </span>
-
-                                            <input type="text" class="form-control" id="qty" value="<%=qty%>"/>
-                                            
+                                            <form action="session_update_cart.jsp" method="post"> 
+                                                <input type="hidden" name="check_addcart" value="changeValue">
+                                                <input type="hidden" name="p_id" value="<%=key%>">
+                                                
+                                                <input type="text" class="form-control" id="updated_qty" name="updated_qty" value="<%=qty%>">
+                                            </form>
                                             <span class="input-group-btn">
                                                 <!-- <button class="btn btn-danger" id="minus1">
                                                     <i class="glyphicon glyphicon-minus"></i>
