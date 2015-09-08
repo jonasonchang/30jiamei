@@ -141,10 +141,12 @@
                     <div class="cart-qty_update">
                         <input type="text" class="form-control" id="updated_qty<%=prod.getProductID()%>" name="u" value="<%=qty%>">
                     </div>
-                    <div class="cart-qty_minus">
+                  <div class="cart-qty_minus">
                         <button class="btn btn-danger" name="minus1" value="1" onclick="minus(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-minus"></i></button>   
                     </div>
+                    <div class="notice textcolor"> 請選擇數量後,再加入購物車! 謝謝! </div>
                 </div> 
+                
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
             </div> 

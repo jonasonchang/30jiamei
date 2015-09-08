@@ -75,8 +75,17 @@
 	top: 240px;
 	background: #000
 }
-        
-        div.cart-qty_update{
+    div.notice{
+	position: absolute;
+	width: 219px;
+	height: 35px;
+	left: 108px;
+	top: 60px;
+	background: #000
+}
+    
+	    
+     div.cart-qty_update{
 	position: absolute;
 	width: 62px;
 	height: 51px;
