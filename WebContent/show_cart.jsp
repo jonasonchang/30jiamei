@@ -56,7 +56,7 @@
                                     <%     
                                             for(Map.Entry<Integer,Integer> entry : s1.entrySet()) {
                                             Integer key = entry.getKey();
-                                            Integer value = entry.getValue();
+                                            //Integer value = entry.getValue();
                                             selected_pd = pd.searchbyID(key);
                                             qty =(int)s1.get(key);
                                             total = (int) Math.ceil(selected_pd.getUnitPrice())*qty + total;

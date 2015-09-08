@@ -67,16 +67,44 @@
             text-align:center;
             font-family:\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei,MingLiU,sans-serif;}
 
-	div.cart-btnList{ 
-            position:absolute;
-            width:300px;height:50px; 
-            left:300px;top:260px;
-            background: #000}
+	div.cart-btnList{
+	position: absolute;
+	width: 278px;
+	height: 60px;
+	left: 301px;
+	top: 240px;
+	background: #000
+}
         
+        div.cart-qty_update{
+	position: absolute;
+	width: 62px;
+	height: 51px;
+	left: 318px;
+	top: 8px;
+	background: #000
+}
+     div.cart-qty_add{
+	position: absolute;
+	width: 28px;
+	height: 51px;
+	left: 278px;
+	top: 12px;
+	background: #000
+}
+     div.cart-qty_minus{
+	position: absolute;
+	width: 62px;
+	height: 51px;
+	left: 380px;
+	top: 12px;
+	background: #000
+}
+                        
         div.productlist-unitPrice{ 
             position:absolute;
             width:100px;height:50px; 
-            left:600px;bottom:80px;
+            left:750px;bottom:80px;
             background: #000;
             font-size:28px;
             font-family:\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei,MingLiU,sans-serif;

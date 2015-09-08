@@ -17,47 +17,56 @@
         <%/* 本程式開始 要注意引用 session 物件到購物車,訪客未登入 也會碰到一樣問題
             
              */
+
             // 來本網頁之前 應該先執行 session_init.jsp
             //TreeSet cart_prod_id_data=null;
-            int qty=0;
+            int page_qty = 0;
+            int qty = 0;
             //String cart_id = "";
             // cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
-                //qty = (int) session.getAttribute("cart_qty");
+            //qty = (int) session.getAttribute("cart_qty");
             //    qty = cart_prod_id_data.size();                
-         
+
             //get session date update 'qty' show on webpage
-            
-            TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");    
-            qty = s1.size();    
+            TreeMap<Integer, Integer> s1 = (TreeMap) session.getAttribute("cart_map");
+            page_qty = s1.size();
+
             ProductDAO pd = new ProductDAOimpl();
             ArrayList<Product> list = pd.showAll();
-%>
+        %>
     </head>
     <script language="javascript">
 
-    
-        function addqty(prod_id)// JavaScriot 專用addqty
-        {
-            //qty = counter++;
-            prod_array.push(prod_id);
-            prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
-            {
-                return self.indexOf(item) === pos;
-            });
-            //cart.total_qty = prod_reduce_dup_array.length;
-            //cart.prods=prod_reduce_dup_array;
-            //Session.set("cart");
-            
-            //Session.set("prods", prod_reduce_dup_array);
-            //Session.set("total_qty", qty);
-            
-            //Session.get("prods");
-            //counter =Session.get("total_qty");
+        var counter = 0;
+
+        function add(id) {
+            var getById = "updated_qty" + id;
+            var receiveById = "receive_qty" + id;
+            //alert(getById);
+            var x = parseInt(document.getElementById(getById).value);
+            //alert(x);
+            counter = x + 1;
             //alert(counter);
-            //alert(Session.dump());
-            //document.getElementById("count").innerHTML = counter;
-            //document.getElementById("count").firstChild.nodeValue=cart.total_qty;
+            document.getElementById(getById).value = counter;
+            //alert(document.getElementById(getById).value);
+            document.getElementById(receiveById).value = counter;
+            //alert(document.getElementById("receive_qty").value);
         }
+
+        function minus(id) {
+            var getById = "updated_qty" + id;
+            var receiveById = "receive_qty" + id;
+            var x = parseInt(document.getElementById(getById).value);
+            counter = x - 1;
+            if (counter <= 0) {
+                counter = 0;
+            }
+            document.getElementById(getById).value = counter;
+            //alert(document.getElementById("updated_qty").value);
+            document.getElementById(receiveById).value = counter;
+
+        }
+
 
 
         function check_data()
@@ -89,7 +98,7 @@
 
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="show_cart.jsp" > <img src="images/cart_white.png" alt="cart"></a>
-                <span id="count"><%=qty%></span> items.
+                <span id="count"><%=page_qty%></span> items.
             </div>
             <div id="search-bar" >
                 <form class="navbar-form navbar-right" action="SearchProd.jsp" method="post" onSubmit="return check_data()">
@@ -100,23 +109,41 @@
                 </form>
             </div>
             <hr />
-            <% for (Product prod : list) {%>
+            <% for (Product prod : list) {
+                    if (s1.containsKey(prod.getProductID())) {
+                        qty = (int) s1.get(prod.getProductID());
+                    } else {
+                        qty = 0;
+                    }
+
+            %>
             <div class="conten-prodlist"> 
                 <div class="productlist-photo"><img src="images/B_smallpics/s_<%=prod.getProductID()%>.jpg" class="img-responsive" alt="Responsive image"></div>
 
                 <div class="productlist-name textcolor"><%=prod.getProductName()%></div> 
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
                 <div class="cart-btnList"> 
-                    
-                    <!--<button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> 
-                        
-                        <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a> -->
-                    
+
+<!--<button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> 
+    
+    <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a> -->
+
                     <form name="addcart" action="session_update_cart.jsp" method="post">
-                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" />    
-                        <input type="submit" name="check_addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
+                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>">
+                        <input type="hidden" id="receive_qty<%=prod.getProductID()%>" name="updated_qty" value="0">
                         <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
+                        <input type="submit" name="check_addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
+
                     </form> 
+                    <div class="cart-qty_add">
+                        <button class="btn btn-success" name="add1" value="1" onclick="add(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-plus"></i></button>       
+                    </div>
+                    <div class="cart-qty_update">
+                        <input type="text" class="form-control" id="updated_qty<%=prod.getProductID()%>" name="u" value="<%=qty%>">
+                    </div>
+                    <div class="cart-qty_minus">
+                        <button class="btn btn-danger" name="minus1" value="1" onclick="minus(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-minus"></i></button>   
+                    </div>
                 </div> 
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
