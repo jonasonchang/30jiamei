@@ -16,24 +16,56 @@
 
     </head>
     <script language="javascript">
+        function goBack() {
+            window.history.back();
+        }
+        var counter = 0;
 
-        var counter = 1;
-        var prod_array = new Array();
-        var prod_reduce_dup_array = new Array();
-        function addqty(prod_id)
-        {
-            qty = counter++;
-            prod_array.push(prod_id);
-            prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
-            {
-                return self.indexOf(item) === pos;
-            });
-            /* for (var x in prod_reduce_dup_array) {
-             out.print(prod_reduce_dup_array[x]);
-             }*/
-            document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
+        function add(id) {
+            var getById = "updated_qty" + id;
+            var receiveById = "receive_qty" + id;
+            //alert(getById);
+            var x = parseInt(document.getElementById(getById).value);
+            //alert(x);
+            counter = x + 1;
+            //alert(counter);
+            document.getElementById(getById).value = counter;
+            //alert(document.getElementById(getById).value);
+            document.getElementById(receiveById).value = counter;
+            //alert(document.getElementById("receive_qty").value);
         }
 
+        function minus(id) {
+            var getById = "updated_qty" + id;
+            var receiveById = "receive_qty" + id;
+            var x = parseInt(document.getElementById(getById).value);
+            counter = x - 1;
+            if (counter <= 0) {
+                counter = 0;
+            }
+            document.getElementById(getById).value = counter;
+            //alert(document.getElementById("updated_qty").value);
+            document.getElementById(receiveById).value = counter;
+
+        }
+        /*
+         var counter = 1;
+         var prod_array = new Array();
+         var prod_reduce_dup_array = new Array();
+         function addqty(prod_id)
+         {
+         qty = counter++;
+         prod_array.push(prod_id);
+         prod_reduce_dup_array = prod_array.filter(function(item, pos, self)
+         {
+         return self.indexOf(item) === pos;
+         });
+         /* for (var x in prod_reduce_dup_array) {
+         out.print(prod_reduce_dup_array[x]);
+         }
+         document.getElementById("count").innerHTML = prod_reduce_dup_array.length;
+         }
+         */
     </script>
 
 
@@ -46,25 +78,33 @@
             //s = "脆梅";
             //out.print(s);
             //s = "紫蘇梅";
-            int qty=0;
-            TreeMap<Integer,Integer> s1 = (TreeMap) session.getAttribute("cart_map");    
-            qty = s1.size(); 
+            int qty = 0;
+            int page_qty = 0;
+            TreeMap<Integer, Integer> s1 = (TreeMap) session.getAttribute("cart_map");
+            page_qty = s1.size();
             String redirectURL = "ErrorPage.html";
             ArrayList<Product> list = null;
             if (s != null) {
                 try {
                     ProductDAO pdDAO = new ProductDAOimpl();
                     list = pdDAO.findByName(s);
+
                     //out.print(list.toString());
-                    if (list == null) {
-                        System.out.println("Size of list: " + list.size());
-                    }
+                    //if (list == null) {
+                    //    System.out.println("Size of list: " + list.size());
+                    //}
                     if (list != null) {
-                        for (Product prod : list) {%>
+                        for (Product prod : list) {
+                            if (s1.containsKey(prod.getProductID())) {
+                                qty = (int) s1.get(prod.getProductID());
+                            } else {
+                                qty = 0;
+                            }
+        %>
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="show_cart.jsp" > <img src="images/cart_white.png" alt="cart"></a>
-                <span id="count"><%=qty%></span> items.
+                <span id="count"><%=page_qty%></span> items.
             </div>
             <hr />
 
@@ -74,10 +114,21 @@
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
                 <div class="cart-btnList">
                     <form name="addcart" action="session_update_cart.jsp" method="post">
-                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" />    
-                        <input type="submit" name="check_addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
+                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" />
+                        <input type="hidden" id="receive_qty<%=prod.getProductID()%>" name="updated_qty" value="0">
+                        <input type="hidden" name="check_addcart" value="search_detial" >
+                        <input type="submit" name="addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
                         <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
-                    </form> 
+                    </form>
+                    <div class="cart-qty_add">
+                        <button class="btn btn-success" name="add1" value="1" onclick="add(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-plus"></i></button>       
+                    </div>
+                    <div class="cart-qty_update">
+                        <input type="text" class="form-control" id="updated_qty<%=prod.getProductID()%>" name="u" value="<%=qty%>">
+                    </div>
+                    <div class="cart-qty_minus">
+                        <button class="btn btn-danger" name="minus1" value="1" onclick="minus(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-minus"></i></button>   
+                    </div>
                     <!--<button type="button" class="btn btn-lg btn-primary" onClick="addqty(<%=prod.getProductID()%>)" id="addcart" value="<%=prod.getProductID()%>" >加入購物車</button> -->
                 </div>
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 

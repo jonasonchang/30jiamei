@@ -19,24 +19,61 @@
             function goBack() {
                 window.history.back();
             }
+             var counter = 0;
+
+        function add(id) {
+            var getById = "updated_qty" + id;
+            var receiveById = "receive_qty" + id;
+            //alert(getById);
+            var x = parseInt(document.getElementById(getById).value);
+            //alert(x);
+            counter = x + 1;
+            //alert(counter);
+            document.getElementById(getById).value = counter;
+            //alert(document.getElementById(getById).value);
+            document.getElementById(receiveById).value = counter;
+            //alert(document.getElementById("receive_qty").value);
+        }
+
+        function minus(id) {
+            var getById = "updated_qty" + id;
+            var receiveById = "receive_qty" + id;
+            var x = parseInt(document.getElementById(getById).value);
+            counter = x - 1;
+            if (counter <= 0) {
+                counter = 0;
+            }
+            document.getElementById(getById).value = counter;
+            //alert(document.getElementById("updated_qty").value);
+            document.getElementById(receiveById).value = counter;
+
+        }
         </script>
         <%
             String s = request.getParameter("id");
             //s="9";
             int qty = 0;
+            int page_qty=0;
             String redirectURL = "ErrorPage.html";
             TreeMap<Integer, Integer> s1 = (TreeMap) session.getAttribute("cart_map");
-            qty = s1.size();
+            page_qty = s1.size();
             Product prod = null;
             if (s != null) {
                 try {
                     int product_id = Integer.valueOf(s);
                     ProductDAO pdDAO = new ProductDAOimpl();
-            prod = pdDAO.searchbyID(product_id);%>
+                    prod = pdDAO.searchbyID(product_id);
+                    
+                    if (s1.containsKey(prod.getProductID())) {
+                        qty = (int) s1.get(prod.getProductID());
+                    } else {
+                        qty = 0;
+                    }
+        %>
         <div id="wrapper">
             <div id="store-cart-content" align="right" class="store-cart">
                 <a href="show_cart.jsp" > <img src="images/cart_white.png" alt="cart"></a>
-                <b><%=qty%></b> items.
+                <b><%=page_qty%></b> items.
             </div>
             <hr />
 
@@ -46,13 +83,22 @@
                 <div class="productlist-decs textcolor"><%=prod.getDescription()%></div> 
                 <div class="cart-btnList">
                     <form name="addcart" action="session_update_cart.jsp" method="post">
-                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>" > 
+                        <input type="hidden" name="p_id" value="<%=prod.getProductID()%>"> 
+                        <input type="hidden" id="receive_qty<%=prod.getProductID()%>" name="updated_qty" value="0">
                         <input type="hidden" name="check_addcart" value="addcart_detial" >
                         <input type="submit" name="addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
                         <button class="btn btn-lg btn-info" onclick="goBack()">回上頁</button>
-                        <!--<a href="#" class="btn btn-lg btn-info" role="button" onclick="goBack()">回上頁</a>-->
-                    </form> 
 
+                    </form> 
+                    <div class="cart-qty_add">
+                        <button class="btn btn-success" name="add1" value="1" onclick="add(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-plus"></i></button>       
+                    </div>
+                    <div class="cart-qty_update">
+                        <input type="text" class="form-control" id="updated_qty<%=prod.getProductID()%>" name="u" value="<%=qty%>">
+                    </div>
+                    <div class="cart-qty_minus">
+                        <button class="btn btn-danger" name="minus1" value="1" onclick="minus(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-minus"></i></button>   
+                    </div>
                 </div> 
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 
