@@ -22,6 +22,7 @@
             //TreeSet cart_prod_id_data=null;
             int page_qty = 0;
             int qty = 0;
+            Boolean flag;// Control the show icon
             //String cart_id = "";
             // cart_prod_id_data = (TreeSet) session.getAttribute("cart_id");
             //qty = (int) session.getAttribute("cart_qty");
@@ -39,6 +40,7 @@
 
         var counter = 0;
 
+       
         function add(id) {
             var getById = "updated_qty" + id;
             var receiveById = "receive_qty" + id;
@@ -112,8 +114,10 @@
             <% for (Product prod : list) {
                     if (s1.containsKey(prod.getProductID())) {
                         qty = (int) s1.get(prod.getProductID());
+                        flag=true;
                     } else {
                         qty = 0;
+                        flag=false;
                     }
 
             %>
@@ -130,7 +134,7 @@
 
                     <form name="addcart" action="session_update_cart.jsp" method="post">
                         <input type="hidden" name="p_id" value="<%=prod.getProductID()%>">
-                        <input type="hidden" id="receive_qty<%=prod.getProductID()%>" name="updated_qty" value="0">
+                        <input type="hidden" id="receive_qty<%=prod.getProductID()%>" name="updated_qty" value="<%=qty%>">
                         <a href="ProductDetial.jsp?id=<%=prod.getProductID()%>" class="btn btn-primary btn-lg " role="button">詳細資料</a>
                         <input type="submit" name="check_addcart" value="加入購物車" class="btn btn-lg btn-primary" onclick="">
 
@@ -144,8 +148,13 @@
                   <div class="cart-qty_minus">
                         <button class="btn btn-danger" name="minus1" value="1" onclick="minus(<%=prod.getProductID()%>)"><i class="glyphicon glyphicon-minus"></i></button>   
                     </div>
-                    <div class="notice textcolor"> 請選擇數量後,再加入購物車! 謝謝! </div>
-                </div> 
+                    <div class="notice textcolor">請選擇數量後,再加入購物車! 謝謝! </div>
+                    <% if (flag){ %>
+                        <div class="purched_check textcolor" ><img src="images/a0.png" alt="Responsive image" width="36" height="42" class="img-responsive"></div>
+                    <%}else {%>
+                        <div class="purched_check textcolor" ><img src="images/a1.png" alt="Responsive image" width="36" height="42" class="img-responsive"></div>
+                    <% }%>
+              </div> 
                 
                 <div class="productlist-unitPrice textcolor"><%=Math.round(prod.getUnitPrice())%>元</div>                 
                 <div class="productlist-id textcolor"><%=prod.getProductID()%></div> 

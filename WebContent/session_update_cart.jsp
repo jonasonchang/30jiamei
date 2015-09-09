@@ -33,7 +33,7 @@
 
             if (check_add.equals("加入購物車")) {
                 //out.println(check_add);
-                //out.println(updated_qty);
+                out.println(updated_qty);
                 if (updated_qty == 0) {
                     s1.remove(p);
                 } else {

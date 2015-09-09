@@ -19,41 +19,41 @@
             function goBack() {
                 window.history.back();
             }
-             var counter = 0;
+            var counter = 0;
 
-        function add(id) {
-            var getById = "updated_qty" + id;
-            var receiveById = "receive_qty" + id;
-            //alert(getById);
-            var x = parseInt(document.getElementById(getById).value);
-            //alert(x);
-            counter = x + 1;
-            //alert(counter);
-            document.getElementById(getById).value = counter;
-            //alert(document.getElementById(getById).value);
-            document.getElementById(receiveById).value = counter;
-            //alert(document.getElementById("receive_qty").value);
-        }
-
-        function minus(id) {
-            var getById = "updated_qty" + id;
-            var receiveById = "receive_qty" + id;
-            var x = parseInt(document.getElementById(getById).value);
-            counter = x - 1;
-            if (counter <= 0) {
-                counter = 0;
+            function add(id) {
+                var getById = "updated_qty" + id;
+                var receiveById = "receive_qty" + id;
+                //alert(getById);
+                var x = parseInt(document.getElementById(getById).value);
+                //alert(x);
+                counter = x + 1;
+                //alert(counter);
+                document.getElementById(getById).value = counter;
+                //alert(document.getElementById(getById).value);
+                document.getElementById(receiveById).value = counter;
+                //alert(document.getElementById("receive_qty").value);
             }
-            document.getElementById(getById).value = counter;
-            //alert(document.getElementById("updated_qty").value);
-            document.getElementById(receiveById).value = counter;
 
-        }
+            function minus(id) {
+                var getById = "updated_qty" + id;
+                var receiveById = "receive_qty" + id;
+                var x = parseInt(document.getElementById(getById).value);
+                counter = x - 1;
+                if (counter <= 0) {
+                    counter = 0;
+                }
+                document.getElementById(getById).value = counter;
+                //alert(document.getElementById("updated_qty").value);
+                document.getElementById(receiveById).value = counter;
+
+            }
         </script>
         <%
             String s = request.getParameter("id");
             //s="9";
             int qty = 0;
-            int page_qty=0;
+            int page_qty = 0;
             String redirectURL = "ErrorPage.html";
             TreeMap<Integer, Integer> s1 = (TreeMap) session.getAttribute("cart_map");
             page_qty = s1.size();
@@ -63,7 +63,7 @@
                     int product_id = Integer.valueOf(s);
                     ProductDAO pdDAO = new ProductDAOimpl();
                     prod = pdDAO.searchbyID(product_id);
-                    
+
                     if (s1.containsKey(prod.getProductID())) {
                         qty = (int) s1.get(prod.getProductID());
                     } else {
