@@ -75,3 +75,17 @@ div.errorpage{
     margin-left: auto;
     margin-right: auto;
 }
+tr {
+width: 100%;
+display: inline-table;
+}
+
+table{
+ height:500px; 
+}
+tbody{
+  overflow-y: scroll;
+  height: 400px;
+  width: 100%;
+  position: absolute;
+}
