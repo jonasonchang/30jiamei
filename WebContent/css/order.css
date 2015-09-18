@@ -22,11 +22,7 @@
     background-color: #FFF;
     /*background-image: url(../images/1_1.jpg) */
 }
-table.textcolor {
-    font-size:18px;
-    font-family:\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei,MingLiU,sans-serif; 
-    color:#fff;
-}
+
 .input-group-xs>.form-control,
 .input-group-xs>.input-group-addon,
 .input-group-xs>.input-group-btn>.btn {
@@ -51,7 +47,23 @@ div.store-cart {
 
 hr { width:100%; height:1px; background: #000 }
 
+table.textcolor {
+    font-size:18px;
+    font-family:\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei,MingLiU,sans-serif; 
+    color:#fff;
+}
+
+table.textcolor12 {
+    font-size:12px;
+    font-family:\5FAE\8EDF\6B63\9ED1\9AD4,Microsoft JhengHei,MingLiU,sans-serif; 
+    color:#fff;
+}
 td.textcolor 
+{
+    color: rgb(255,255,255);
+    font-size: 18px;
+}
+caption.textcolor 
 {
     color: rgb(255,255,255);
     font-size: 18px;
@@ -80,12 +92,22 @@ width: 100%;
 display: inline-table;
 }
 
-table{
- height:500px; 
+//table{
+// height:500px; 
+//}
+//tbody{
+//  overflow-y: scroll;
+//  height: 400px;
+//  width: 100%;
+//  position: absolute;
+//}
+.bodycontainer {
+    max-height: 350px;
+    width: 100%; 
+    margin: 0; 
+    overflow-y: auto; 
 }
-tbody{
-  overflow-y: scroll;
-  height: 400px;
-  width: 100%;
-  position: absolute;
+.table-scrollable {
+    margin: 0;
+    padding: 0;
 }

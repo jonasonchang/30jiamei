@@ -9,7 +9,7 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/cart.css">
+        <link rel="stylesheet" href="css/order.css">
         <%
             ProductDAO pd = new ProductDAOimpl();
             Product selected_pd;
@@ -140,7 +140,7 @@
                             <!-- <button type="button" class="btn btn-lg btn-primary" onClick="" id="remove_all" >清空購物車</button> -->
                             <a class="btn btn-lg btn-primary" href="session_empty_cart.jsp">清空購物車</a>
                         </div>
-                        <div >  <a href="# 訂單.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
+                        <div >  <a href="order_list.jsp" class="btn btn-primary btn-lg " role="button">下訂單</a> </div>
                     </div>
                 </div>
             </div>

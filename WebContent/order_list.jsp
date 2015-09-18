@@ -4,12 +4,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>show_cart</title>
+        <title>Order_List</title>
         <!-- jQuery, Angular -->
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/cart_1.css">
+        <link rel="stylesheet" href="css/order.css">
         <%
             ProductDAO pd = new ProductDAOimpl();
             Product selected_pd;
@@ -32,7 +32,11 @@
             // iterator 是用來 display card_id 中的 TreeSet 用
             //Iterator iterator = cart_prod_id_data.iterator();
             int total = 0;
-
+            int subtotal=0;
+            int summary_qty=0;
+            double tax=0.05;
+            double acu_total=0;
+            int transport_fee=100;
         %>
     </head>
     
@@ -44,9 +48,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                         <table class="table textcolor">
-                            <thead><tr><th>說明</th><th>金額</th></tr></thead>
-                            
+                         <table class="table textcolor table-responsive">
+                             <caption class="text-center textcolor">訂單摘要</caption>
+                            <thead><tr><th>說明</th><th class="text-right">小計金額</th></tr></thead>
+                         </table>
+                        <div class="bodycontainer scrollable">
+                            <table class="table table-hover table-condensed table-scrollable textcolor12">
                             <tbody>
                                 
                                     <%     
@@ -55,7 +62,10 @@
                                             //Integer value = entry.getValue();
                                             selected_pd = pd.searchbyID(key);
                                             qty =(int)s1.get(key);
+                                            summary_qty+=qty;
                                             total = (int) Math.ceil(selected_pd.getUnitPrice())*qty + total;
+                                            acu_total=(total*1.05)+transport_fee;
+                                            subtotal =(int) Math.ceil(selected_pd.getUnitPrice())*qty;
                                            //while (iterator.hasNext()) {
                                            // Integer current_id = (Integer) iterator.next();
                                             //selected_pd = pd.searchbyID(current_id);
@@ -65,13 +75,20 @@
                                             //out.print(iterator.next() + " "); 
                                     %>                                  
 
-                                <tr><td>產品編號 : <%=key%></td> </tr>
-                                <tr><td>產品名稱 : <%=selected_pd.getProductName()%></td></tr>
-                                <tr><td>商品價格 : <%=(int) Math.ceil(selected_pd.getUnitPrice())%></td></tr>
-                                <tr><td>訂購數量 : <%=qty%></td></tr>
-                                    
-                                    
-                               
+                                    <tr>
+                                        <td>
+                                            產品名稱 : <%=selected_pd.getProductName()%><br>
+                                            產品編號 : <%=key%> <br>
+                                            商品價格 : <%=(int) Math.ceil(selected_pd.getUnitPrice())%><br>
+                                            訂購數量 : <%=qty%>
+                                        </td>
+                                        <td class="text-right">
+                                        <%=subtotal%>       
+                                        </td>
+                                       
+                                        
+                                    </tr>
+                                                               
                                 <% }%> 
                                 <% if(s1.isEmpty()){%>
                                 <tr id="empty_item" > 
@@ -81,12 +98,31 @@
                                 </tr> 
                               <%}%>             
                             </tbody>
+                         </table>    
                            
-                              </table>
-                             <tr> 
-                                <td>總價</td> 
-                                <td><%=total%>元</td> 
-                            </tr>
+                        </div>
+                          
+                            <div>
+                            <table class="table textcolor12">
+                                <tfoot>
+                                    <tr>
+                                        <td>物品總計</td> 
+                                        <td class="text-right"><%=summary_qty%>件</td> 
+                                        <td>稅金</td> 
+                                        <td class="text-right"><%=total*tax%>元</td>
+                                 
+                                    </tr>
+                                        <td>運費</td> 
+                                        <td class="text-right"><%=transport_fee%>元</td>
+                                        <td>總計</td> 
+                                        <td class="text-right"><%=acu_total%>元</td> 
+                                 
+                                
+                            </tfootr>
+                            </table>
+                            </div>
+                           
+                            
                             
                       
                     </div>
