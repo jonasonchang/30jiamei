@@ -9,7 +9,7 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/order.css">
+        <link rel="stylesheet" href="css/cart.css">
         <%
             ProductDAO pd = new ProductDAOimpl();
             Product selected_pd;

@@ -14,6 +14,12 @@
             ProductDAO pd = new ProductDAOimpl();
             Product selected_pd;
 
+            CustomerDAO cd = new CustomerDAOimpl();
+            Customer selected_cd;
+            
+            int cust_id=1; //Will change to request another JSP page;
+            selected_cd = cd.searchbyID(cust_id);
+            
             //get session data
             //TreeSet cart_prod_id_data = null;
             int qty;
@@ -85,24 +91,18 @@
                                         <td class="text-right">
                                         <%=subtotal%>       
                                         </td>
-                                       
-                                        
                                     </tr>
                                                                
                                 <% }%> 
                                 <% if(s1.isEmpty()){%>
                                 <tr id="empty_item" > 
-                                    
-                                    <td >No items!</td>
-                                    
+                                    <td >沒有項目!</td>
                                 </tr> 
                               <%}%>             
                             </tbody>
                          </table>    
-                           
                         </div>
-                          
-                            <div>
+                        <div>
                             <table class="table textcolor12">
                                 <tfoot>
                                     <tr>
@@ -116,18 +116,55 @@
                                         <td class="text-right"><%=transport_fee%>元</td>
                                         <td>總計</td> 
                                         <td class="text-right"><%=acu_total%>元</td> 
-                                 
-                                
+                            
                             </tfootr>
                             </table>
-                            </div>
-                           
-                            
-                            
-                      
+                        </div>
+        
                     </div>
                     <div class="col-xs-6 col-sm-8">
-                        <!--Bottom Area-->
+                        <!--Customer information Area-->
+                        
+                            <table class="table textcolor table-responsive">
+                             <caption class="text-center textcolor">會員基本資料</caption>
+                              <tr>
+                                        <td class="text-right">
+                                            會員編號 : <br>
+                                            會員名稱 : <br>
+                                            聯絡電話 : <br>
+                                            手機電話 : <br>
+                                            電子郵件 : <br>
+                                        </td>
+                                        <td class="text-left">
+                                            <%=cust_id%>  <br>
+                                            <%=selected_cd.getCustomerName()%><br>
+                                            <%=selected_cd.getPhone()%><br>
+                                            <%=selected_cd.getCelPhone()%><br>
+                                            <%=selected_cd.getEmail()%><br>
+                                        </td>
+                              </tr>
+                            
+                            </table>
+                        <div class="bodycontainer scrollable">
+                            <table class="table table-hover table-condensed table-scrollable textcolor12">
+                            <tbody>
+                                                                 
+                                    <tr>
+                                        <td>
+                                            產品名稱 : <br>
+                                            產品編號 : <br>
+                                            商品價格 : <br>
+                                            訂購數量 : <br>
+                                        </td>
+                                        <td class="text-right">
+                                          
+                                        </td>
+                                    </tr>
+                                                               
+                                    
+                            </tbody>
+                         </table>    
+                        </div>
                         <div class="cart-btn1" >
                             <a class="btn btn-lg btn-info" href="ProductList_all.jsp">回產品一覽</a>
                         </div>
